@@ -1,9 +1,14 @@
 #include <WiFi.h>
+
+//********declare values***********
+
 const int soil_moisture_pin=34;
 int soil_moisture_value=0;
 
 const int pin_1=2;
 const int pin_2=4;
+
+//********set wifi id and password***********
 
 const char* wifi_id="theertha";
 const char * wifi_pswd="theertha123";
@@ -13,7 +18,8 @@ void setup()
   // put your setup code here, to run once:
   Serial.begin(115200);
 
-  //wifi code
+  //********wifi connection code***********
+  
   WiFi.begin(wifi_id,wifi_pswd);
   while(WiFi.status()!=WL_CONNECTED)
   {
@@ -25,8 +31,10 @@ void setup()
   pinMode(pin_2,OUTPUT);
 }
 
-void loop() {
+void loop() 
+{
   // put your main code here, to run repeatedly:
+  
   soil_moisture_value=analogRead(soil_moisture_pin);
   Serial.println(soil_moisture_value);
   if(soil_moisture_value<3500)
