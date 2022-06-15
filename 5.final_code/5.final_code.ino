@@ -27,6 +27,7 @@ void setup()
     Serial.println("WIFI CONNECTING..!!");
   }
   Serial.println(WiFi.localIP());
+      Serial.println("WIFI CONNECTED..!!");
    pinMode(pin_1,OUTPUT);
   pinMode(pin_2,OUTPUT);
 }
