@@ -11,7 +11,7 @@ const int pin_2=4;
 //********set wifi id and password***********
 
 const char* wifi_id="theertha";
-const char * wifi_pswd="theertha123";
+const char * wifi_pswd="theertha@123";
 
 void setup() 
 {
