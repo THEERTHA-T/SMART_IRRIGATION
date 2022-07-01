@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "996332250644",
+    "project_id": "aquaflow-7d47c",
+    "storage_bucket": "aquaflow-7d47c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996332250644:android:617d68190b6e3b60f8e901",
+        "android_client_info": {
+          "package_name": "com.example.aquaflow"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996332250644-jnj3pvpa52atenh2vs3p332qndi6j6b9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_AflhOIZ5TAIfmoC3t3YquOauODM-i-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996332250644-jnj3pvpa52atenh2vs3p332qndi6j6b9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:996332250644:android:c982da171ce54566f8e901",
+        "android_client_info": {
+          "package_name": "com.example.smart_irrigation_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "996332250644-jnj3pvpa52atenh2vs3p332qndi6j6b9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_AflhOIZ5TAIfmoC3t3YquOauODM-i-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "996332250644-jnj3pvpa52atenh2vs3p332qndi6j6b9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

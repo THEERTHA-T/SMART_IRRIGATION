@@ -1,17 +1,53 @@
 #include <WiFi.h>
-
+#include <AsyncTCP.h>
+#include <ESPAsyncWebServer.h>
 //********declare values***********
 
-const int soil_moisture_pin=34;
-int soil_moisture_value=0;
+const int soil_moisture_pin = 34;
+int soil_moisture_value = 0;
 
-const int pin_1=2;
-const int pin_2=4;
+const int pin_1 = 2;
+const int pin_2 = 4;
 
 //********set wifi id and password***********
 
-const char* wifi_id="theertha";
-const char * wifi_pswd="theertha@123";
+const char* wifi_id = "theertha";
+const char * wifi_pswd = "theertha@123";
+
+AsyncWebServer server(80);
+
+void motor_on()
+{
+  Serial.println("NEED WATER");
+  digitalWrite(pin_1, HIGH); //function..first parameter is pin number
+  digitalWrite(pin_2, LOW);
+  delay(1000);
+}
+
+void motor_off()
+{
+  digitalWrite(pin_1, LOW);
+  digitalWrite(pin_2, LOW);
+  delay(1000);
+
+}
+
+const char index_html[] PROGMEM = R"rawliteral(
+<html>
+<body>
+<h2>hello world</h2>
+%BUTTONPLACEHOLDER%
+</body>
+</html>
+)rawliteral";
+
+String processor(const String& var){
+  if(var=="BUTTONPLACEHOLDER"){
+    String buttons="<h2>ok</h2>";
+    return buttons;
+  }
+  return String();
+}
 
 void setup() 
 {
@@ -26,10 +62,30 @@ void setup()
     delay(1000);
     Serial.println("WIFI CONNECTING..!!");
   }
+  
   Serial.println(WiFi.localIP());
-      Serial.println("WIFI CONNECTED..!!");
+   Serial.println("WIFI CONNECTED..!!");
    pinMode(pin_1,OUTPUT);
   pinMode(pin_2,OUTPUT);
+  
+  server.on("/",HTTP_GET,[](AsyncWebServerRequest *request){
+    request->send_P(200,"text/html",index_html,processor);
+  });
+
+   server.on("/on_motor",HTTP_GET,[](AsyncWebServerRequest *request){
+          Serial.println("MOTOR ON..!!");
+          motor_on();
+    //request->send_P(200,"text/html",index_html,processor);
+  });
+
+   server.on("/off_motor",HTTP_GET,[](AsyncWebServerRequest *request){
+          Serial.println("MOTOR OFF..!!");
+          motor_off();
+    //request->send_P(200,"text/html",index_html,processor);
+  });
+  
+  
+  server.begin();
 }
 
 void loop() 
@@ -43,18 +99,18 @@ void loop()
     //digitalWrite(pin_1,LOW);
     Serial.println("ENOUGH WATER");
     digitalWrite(pin_1,LOW);
-   digitalWrite(pin_2,LOW);
-     delay(5000);
+    digitalWrite(pin_2,LOW);
+     //delay(5000);
      
-  }
-  else
-  {
+ }
+  //else
+  //{
    // digitalWrite(pin_1,HIGH);
-    Serial.println("NEED WATER");
-    digitalWrite(pin_1,HIGH); //function..first parameter is pin number
-  digitalWrite(pin_2,LOW);
-  delay(5000);
-    
-  }
-  
+    //Serial.println("NEED WATER");
+    //digitalWrite(pin_1,HIGH); //function..first parameter is pin number
+  //digitalWrite(pin_2,LOW);
+  //delay(5000); 
+  //}
+
+  delay(2000);
 }
